@@ -15,7 +15,7 @@ def levenshtein(board):
 
   return distance
 
-def find_solution(node):
+def find_solution(node, use_heuristic=False):
   moves = [-2, -1, 1, 2]
 
   iterations = 0
@@ -37,8 +37,13 @@ def find_solution(node):
 
       if new_state and new_game not in seen:
         seen.append(new_game)
-        node.add_child(new_game)
+        node.add_child(new_game, target=aux.data)
+    
+    if use_heuristic:
+      aux.childs.sort(key=lambda x:levenshtein(x.data.board))
 
     history = aux.childs + history
+
+    iterations += 1
   
   return []
