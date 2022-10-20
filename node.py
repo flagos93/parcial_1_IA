@@ -7,19 +7,19 @@ class Node:
     self.childs = []
 
 
-  def add_child(self, data, target=None):
+  def add_child(self, data, point=None):
 
-    if not target:
+    if not point:
       child = Node(data=data, level=self.level+1, parent=self)
       self.childs.append(child)
 
     else:
-      if target == self.data:
+      if point == self.data:
         child = Node(data, level=self.level+1, parent=self)
         self.childs.append(child)
       else:
         for child in self.childs:
-          child.add_child(data, target=target)
+          child.add_child(data, point=point)
 
   def print_path(self):
     path = [self.data]

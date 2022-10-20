@@ -37,7 +37,7 @@ def find_solution(node, use_heuristic=False):
 
       if new_state and new_game not in seen:
         seen.append(new_game)
-        node.add_child(new_game, target=aux.data)
+        node.add_child(new_game, point=aux.data)
     
     if use_heuristic:
       aux.childs.sort(key=lambda x:levenshtein(x.data.board))
